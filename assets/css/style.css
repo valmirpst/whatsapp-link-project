@@ -1,0 +1,102 @@
+:root {
+    --primary-color: #196b10;
+    --gray-0: #000;
+    --gray-01: #565656;
+    --gray-02: #fff;
+    --primary-font: Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    font-family: var(--primary-font);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+}
+
+.generator-container {
+    background-color: var(--gray-02);
+    padding: 1rem 3rem 2rem 3rem;
+    border-radius: 1rem;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    margin-bottom: 1.5rem;
+    user-select: none;
+}
+
+.title > img {
+    width: 40px;
+    height: 40px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.input-container #phone-number-input {
+    /* width: 100%; */
+    font-size: 1rem;
+    padding: 0.9rem 0.7rem;
+    border: 2px solid var(--gray-01);
+    border-radius: 0.3rem;
+}
+
+.input-container > button {
+    width: 50px;
+    background-color: var(--primary-color);
+    border: 1px solid transparent;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.input-container > button:hover {
+    border: 1px solid var(--gray-0);
+    opacity: 0.9;
+}
+
+.link-result {
+    color: var(--gray-01);
+    font-size: 0.8rem;
+    border: 1px solid var(--gray-01);
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.link-result:hover {
+    cursor: copy;
+    opacity: 0.9;
+}
+
+.click-message {
+    color: var(--gray-01);
+    font-size: 0.7rem;
+    text-align: center;
+    user-select: none;
+}
+
+.hidden {
+    display: none;
+}
