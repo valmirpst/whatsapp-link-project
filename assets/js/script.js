@@ -11,7 +11,10 @@ class Generator {
     events() {
         this.linkButton.addEventListener('click', this.generateLink);
         this.sendButton.addEventListener('click', this.goTolink);
-        this.input.addEventListener('keyup', this.formatText);
+        this.input.addEventListener('keydown', e => {
+            if (e.keyCode > 48 || e.keyCode > 57) e.preventDefault();
+            this.formatText();
+        });
     }
 
     formatText() {
@@ -19,9 +22,9 @@ class Generator {
         if (inputText.length > 2 && !inputText.includes('(')) {
             this.input.value = `(${inputText.slice(0, 2)}) ${inputText.slice(2)}`;
         }
-        if (inputText.length > 10) {
-            console.log(this.input.value)
-            console.log(inputText)
+        if (inputText.length > 10 && !inputText.includes('-') && inputText.includes('(')) {
+            // console.log(this.input.value)
+            // console.log(inputText)
             this.input.value = `${inputText.slice(0, 5)}${inputText.slice(5, 10)}-${inputText.slice(10)}`;
         }
     }
