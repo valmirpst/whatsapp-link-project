@@ -4,41 +4,47 @@ class Generator {
         this.linkButton = document.querySelector(linkButton);
         this.sendButton = document.querySelector(sendButton);
         this.resultDiv = document.querySelector(resultDiv);
+        this.clearNumber;
         this.link;
-        this.phoneNumber;
+        this.isValid = false;
     }
 
     events() {
         this.linkButton.addEventListener('click', this.generateLink);
         this.sendButton.addEventListener('click', this.goTolink);
-        this.input.addEventListener('keydown', e => {
-            if (e.keyCode > 48 || e.keyCode > 57) e.preventDefault();
-            this.formatText();
-        });
+        this.input.addEventListener('input', this.formatText);
     }
 
     formatText() {
-        const inputText = this.input.value;
-        if (inputText.length > 2 && !inputText.includes('(')) {
-            this.input.value = `(${inputText.slice(0, 2)}) ${inputText.slice(2)}`;
-        }
-        if (inputText.length > 10 && !inputText.includes('-') && inputText.includes('(')) {
-            // console.log(this.input.value)
-            // console.log(inputText)
-            this.input.value = `${inputText.slice(0, 5)}${inputText.slice(5, 10)}-${inputText.slice(10)}`;
-        }
+        const regex = /(\d{2})(\d{4,5})(\d{4})/;
+        this.clearNumber = this.input.value.replace(/\D/g, '');
+        this.input.value = this.clearNumber.replace(regex, '($1) $2-$3');
+
+        if (this.clearNumber.length == 11) {
+            this.input.style.color = '#008000';
+            this.input.style.borderColor = '#008000';
+            this.isValid = true;
+        } else {
+            this.input.style.color = '#000';
+            this.input.style.borderColor = '#ff0000';
+            this.isValid = false;
+        };
     }
 
     generateLink() {
-        console.log('aa')
+        if (this.isValid) {}
     }
 
     goTolink() {
-        console.log('bb')
+        if (this.isValid) {
+            window.open(`https://wa.me/55${this.clearNumber}`)
+        }
     }
 
     bindEvents() {
         this.formatText = this.formatText.bind(this);
+        this.goTolink = this.goTolink.bind(this);
+        this.generateLink = this.generateLink.bind(this);
     }
 
     init() {
